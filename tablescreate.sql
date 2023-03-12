@@ -1,0 +1,64 @@
+use arenda_nedvizhimosti;
+--   CREATE TABLE `arenda_nedvizhimosti`.`pomeshenie` (
+--   `id_pomesheniya` INT NOT NULL AUTO_INCREMENT,
+--   `name` VARCHAR(100) NOT NULL,
+--   `adress` VARCHAR(100) NOT NULL,
+--   `square` INT NOT NULL,
+--   `Podval` TINYINT NOT NULL,
+--   `podval_square` INT NULL,
+--   `koefficient_podvala` FLOAT NULL,
+--   `koefficient_tech_obustroistva` FLOAT NOT NULL,
+--   PRIMARY KEY (`id_pomesheniya`),
+--   UNIQUE INDEX `id_pomesheniya_UNIQUE` (`id_pomesheniya` ASC) VISIBLE,
+--   UNIQUE INDEX `name_UNIQUE` (`name` ASC) VISIBLE);
+--   
+--   INSERT pomeshenie(name, adress, square, Podval, koefficient_tech_obustroistva) 
+-- 	VALUES ('iPhone X','iPhone X', 1, 1 ,0);
+
+-- CREATE TABLE `arenda_nedvizhimosti`.`fizlitco` (
+--   `IIN_Arendatora` INT NOT NULL AUTO_INCREMENT,
+--   `Lastname` NVARCHAR(100) NOT NULL,
+--   `Name` NVARCHAR(100) NOT NULL,
+--   `Middlename` NVARCHAR(100) NULL,
+--   `Passport_data` NVARCHAR(100) NOT NULL,
+--   `Adress` NVARCHAR(100) NOT NULL,
+--   `Telephone` NVARCHAR(12) NOT NULL,
+--   PRIMARY KEY (`IIN_Arendatora`),
+--   UNIQUE INDEX `IIN_Arendatora_UNIQUE` (`IIN_Arendatora` ASC) VISIBLE);
+  
+--   INSERT fizlitco(Lastname, Name, Passport_data, Adress, Telephone) 
+-- 	VALUES ('asdas','asdsa', 'asdsa', 'asdsa' ,'asdsa');
+
+-- CREATE TABLE `arenda_nedvizhimosti`.`urlitco` (
+--   `BIN_Arendatora` VARCHAR(10) NOT NULL UNIQUE,
+--   `Comp_Name` NVARCHAR(100) NOT NULL,
+--   `FIO` NVARCHAR(100) NOT NULL,
+--   `Ur_Adress` NVARCHAR(100) NOT NULL,
+--   `Telephone` NVARCHAR(12) NOT NULL,
+--   `Licence_number` NVARCHAR(15) NOT NULL,
+--   `Licence_Date` DATE NOT NULL,
+--   PRIMARY KEY (`BIN_Arendatora`),
+--   UNIQUE INDEX `BIN_Arendatora_UNIQUE` (`BIN_Arendatora` ASC) VISIBLE);
+
+-- CREATE TABLE `arenda_nedvizhimosti`.`employer` (
+-- 	`Employer_ID` INT NOT NULL AUTO_INCREMENT,
+-- 	`Lastname` NVARCHAR(100) NOT NULL,
+-- 	`Name` NVARCHAR(100) NOT NULL,
+-- 	`Middlename` NVARCHAR(100) NULL,
+-- 	`Job_Title` NVARCHAR(100) NOT NULL,
+-- 	`Login` NVARCHAR(100) NOT NULL,
+-- 	`Password` NVARCHAR(100) NOT NULL,
+-- 	PRIMARY KEY (`Employer_ID`),
+-- 	UNIQUE INDEX `Employer_ID` (`Employer_ID` ASC) VISIBLE);
+    
+--     CREATE TABLE `arenda_nedvizhimosti`.`dogovor_urlitco` (
+-- 	`Dogovor_ID` INT NOT NULL AUTO_INCREMENT,
+-- 	`id_pomesheniya` INT NOT NULL,
+-- 	`Name` NVARCHAR(100) NOT NULL,
+-- 	`Middlename` NVARCHAR(100) NULL,
+-- 	`Job_Title` NVARCHAR(100) NOT NULL,
+-- 	`Login` NVARCHAR(100) NOT NULL,
+-- 	`Password` NVARCHAR(100) NOT NULL,
+--     FOREIGN KEY (id_pomesheniya) REFERENCES pomeshenie(id_pomesheniya),
+-- 	PRIMARY KEY (`Dogovor_ID`),
+-- 	UNIQUE INDEX `Dogovor_ID` (`Dogovor_ID` ASC) VISIBLE);
