@@ -45,28 +45,7 @@
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap>../../Downloads/borcelle1.png</pixmap>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_2">
-     <property name="geometry">
-      <rect>
-       <x>140</x>
-       <y>40</y>
-       <width>221</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>Times New Roman</family>
-       <pointsize>14</pointsize>
-       <weight>75</weight>
-       <bold>true</bold>
-      </font>
-     </property>
-     <property name="text">
-      <string>ДОБРО ПОЖАЛОВАТЬ!</string>
+      <pixmap>borcelle1.png</pixmap>
      </property>
     </widget>
    </widget>

@@ -38,13 +38,13 @@ def login():
           
 
     elif user_entry.get() == username and user_pass.get() != password:
-        showwarning(title='Wrong password',
-             message='Please check your password')
+        showwarning(title='Неправильный пароль',
+             message='Пожалуйста, проверьте правильность ввода пароля')
         
 
     elif user_entry.get() != username and user_pass.get() == password:
-        showwarning(title='Wrong username',
-             message='Please check your username')
+        showwarning(title='Неправильный логин',
+             message='Пожалуйста, проверьте правильность ввода логина')
         
 
     else:
@@ -66,13 +66,13 @@ label.pack(pady=52,padx=1)
 # Create the text box for taking
 # username input from user
 user_entry= ctk.CTkEntry(master=frame,
-                         placeholder_text="Username")
+                         placeholder_text="Логин")
 user_entry.pack(pady=1,padx=10)
   
 # Create a text box for taking 
 # password input from user
 user_pass= ctk.CTkEntry(master=frame,
-                        placeholder_text="Password",
+                        placeholder_text="Пароль",
                         show="*")
 user_pass.pack(pady=12,padx=10)
   
@@ -83,7 +83,7 @@ button.pack(pady=12,padx=10)
   
 # Create a remember me checkbox
 checkbox = ctk.CTkCheckBox(master=frame,
-                           text='Remember Me')
+                           text='Запомнить меня')
 checkbox.pack(pady=12,padx=10)
 
 app.mainloop()
