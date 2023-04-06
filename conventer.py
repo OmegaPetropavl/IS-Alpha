@@ -8,7 +8,7 @@ def generate_all_ui2py(path: str):
     pattern = re.compile(r'.*\.ui')
     for it in files:
         if pattern.match(it):
-            ui_list.append(it)
+            ui_list.append(it)gdf
 
     for it in ui_list:
         file_path = os.path.join(path, it)
