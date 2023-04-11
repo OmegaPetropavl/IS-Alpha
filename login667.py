@@ -49,9 +49,7 @@ class LoginBeg(QWidget):
         self.menubar.setGeometry(QtCore.QRect(0, 0, 359, 22))
         self.menubar.setObjectName("menubar")
         MainWindow.setMenuBar(self.menubar)
-        self.statusbar = QtWidgets.QStatusBar(MainWindow)
-        self.statusbar.setObjectName("statusbar")
-        MainWindow.setStatusBar(self.statusbar)
+        
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
@@ -95,11 +93,11 @@ class LoginBeg(QWidget):
             error.exec_()
             
 
-class Ui_MainWindow():
+class Ui_MainWindow(object):
     def __init__(self):
         super().__init__()
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(700, 500)
+        MainWindow.setFixedSize(900, 900)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         MainWindow.setCentralWidget(self.centralwidget)
@@ -117,9 +115,14 @@ class Ui_MainWindow():
         self.menu_5 = QtWidgets.QMenu(self.menubar)
         self.menu_5.setObjectName("menu_5")
         MainWindow.setMenuBar(self.menubar)
-        self.statusbar = QtWidgets.QStatusBar(MainWindow)
-        self.statusbar.setObjectName("statusbar")
-        MainWindow.setStatusBar(self.statusbar)
+        self.label = QLabel(self.centralwidget)
+        self.label.setEnabled(True)
+        self.label.setObjectName(u"label")
+        self.label.setGeometry(QtCore.QRect(0, 0, 900, 900))
+        self.label.setPixmap(QtGui.QPixmap("logocompany.png"))
+        self.label.setScaledContents(True)
+        self.label.setWordWrap(False)
+        self.label.setOpenExternalLinks(False)
         self.action = QtWidgets.QAction(MainWindow)
         self.action.setObjectName("action")
         self.action_2 = QtWidgets.QAction(MainWindow)
@@ -147,7 +150,7 @@ class Ui_MainWindow():
         self.menubar.addAction(self.menu_2.menuAction())
         self.menubar.addAction(self.menu_3.menuAction())
         self.menubar.addAction(self.menu_4.menuAction())
-        self.menubar.addAction(self.menu.menuAction())
+        
         self.menubar.addAction(self.menu_5.menuAction())
 
         self.retranslateUi(MainWindow)
@@ -180,3 +183,4 @@ if __name__ == "__main__":
     ui.setupUi(MainWindow)
     MainWindow.show()
     sys.exit(app.exec_())
+
