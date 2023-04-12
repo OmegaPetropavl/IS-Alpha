@@ -97,7 +97,7 @@ class Ui_MainWindow(object):
     def __init__(self):
         super().__init__()
         MainWindow.setObjectName("MainWindow")
-        MainWindow.setFixedSize(900, 900)
+        MainWindow.setFixedSize(700, 700)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         MainWindow.setCentralWidget(self.centralwidget)
@@ -118,17 +118,20 @@ class Ui_MainWindow(object):
         self.label = QLabel(self.centralwidget)
         self.label.setEnabled(True)
         self.label.setObjectName(u"label")
-        self.label.setGeometry(QtCore.QRect(0, 0, 900, 900))
+        self.label.setGeometry(QtCore.QRect(0, 0, 700, 700))
         self.label.setPixmap(QtGui.QPixmap("logocompany.png"))
         self.label.setScaledContents(True)
         self.label.setWordWrap(False)
         self.label.setOpenExternalLinks(False)
         self.action = QtWidgets.QAction(MainWindow)
-        self.action.setObjectName("action")
+        self.action.setObjectName("sozddogovor")
+        self.action.triggered.connect(self.fizlitch_select)
         self.action_2 = QtWidgets.QAction(MainWindow)
-        self.action_2.setObjectName("action_2")
+        self.action_2.setObjectName("redakdogovor")
+        
         self.action_3 = QtWidgets.QAction(MainWindow)
-        self.action_3.setObjectName("action_3")
+        self.action_3.setObjectName("arendatory")
+        self.action_3.triggered.connect(self.fizlitch_select)
         self.action_4 = QtWidgets.QAction(MainWindow)
         self.action_4.setObjectName("action_4")
         self.action_5 = QtWidgets.QAction(MainWindow)
@@ -156,6 +159,31 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
+    def fizlitch_select(self):
+        try:
+            
+            db = mdb.connect('localhost', 'root', 'root', 'arenda')
+            mycursor = db.cursor()
+            
+            query = "SELECT * from login"
+            mycursor.execute(query)
+            result = mycursor.fetchone()
+
+            if result == None:
+                print("Неправильный логин или пароль!")
+                
+
+            else:
+                print(result)
+                
+        except mdb.Error as e:
+            error = QMessageBox()
+            error.setText('Подключение невозможно!')
+            error.exec_()
+
+
+
+
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "АИС \"Аренда помещений\""))
@@ -173,7 +201,78 @@ class Ui_MainWindow(object):
         self.action_7.setText(_translate("MainWindow", "Сведения о разработчиках..."))
         self.action_8.setText(_translate("MainWindow", "Редактировать договор..."))
    
+class Ui_fizcreate(object):
+    def setupUi(self, fizcreate):
+        fizcreate.setObjectName("fizcreate")
+        fizcreate.resize(465, 493)
+        self.background = QtWidgets.QFrame(fizcreate)
+        self.background.setGeometry(QtCore.QRect(-30, -10, 531, 601))
+        self.background.setAutoFillBackground(False)
+        self.background.setStyleSheet("#background {\n"
+"background-color: rgb(170, 170, 127)\n"
+"}")
+        self.background.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.background.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.background.setObjectName("background")
+        self.fiolabel = QtWidgets.QLabel(self.background)
+        self.fiolabel.setGeometry(QtCore.QRect(120, 150, 61, 41))
+        self.fiolabel.setObjectName("fiolabel")
+        self.passlabel = QtWidgets.QLabel(self.background)
+        self.passlabel.setGeometry(QtCore.QRect(120, 190, 121, 41))
+        self.passlabel.setObjectName("passlabel")
+        self.adresslabel = QtWidgets.QLabel(self.background)
+        self.adresslabel.setGeometry(QtCore.QRect(120, 270, 141, 41))
+        self.adresslabel.setObjectName("adresslabel")
+        self.numlabel = QtWidgets.QLabel(self.background)
+        self.numlabel.setGeometry(QtCore.QRect(120, 310, 141, 41))
+        self.numlabel.setObjectName("numlabel")
+        self.fio = QtWidgets.QLineEdit(self.background)
+        self.fio.setGeometry(QtCore.QRect(260, 160, 161, 20))
+        self.fio.setObjectName("fio")
+        self.passport = QtWidgets.QLineEdit(self.background)
+        self.passport.setGeometry(QtCore.QRect(260, 200, 161, 20))
+        self.passport.setObjectName("passport")
+        self.adress = QtWidgets.QLineEdit(self.background)
+        self.adress.setGeometry(QtCore.QRect(260, 280, 161, 20))
+        self.adress.setText("")
+        self.adress.setObjectName("adress")
+        self.phone = QtWidgets.QLineEdit(self.background)
+        self.phone.setGeometry(QtCore.QRect(260, 320, 161, 20))
+        self.phone.setObjectName("phone")
+        self.iinlabel = QtWidgets.QLabel(self.background)
+        self.iinlabel.setGeometry(QtCore.QRect(120, 230, 61, 41))
+        self.iinlabel.setObjectName("iinlabel")
+        self.iin = QtWidgets.QLineEdit(self.background)
+        self.iin.setGeometry(QtCore.QRect(262, 240, 161, 20))
+        self.iin.setObjectName("iin")
+        self.nazavanie = QtWidgets.QLabel(self.background)
+        self.nazavanie.setGeometry(QtCore.QRect(70, 60, 411, 51))
+        font = QtGui.QFont()
+        font.setFamily("Times New Roman")
+        font.setPointSize(22)
+        self.nazavanie.setFont(font)
+        self.nazavanie.setObjectName("nazavanie")
+        self.okey = QtWidgets.QPushButton(self.background)
+        self.okey.setGeometry(QtCore.QRect(154, 420, 91, 31))
+        self.okey.setObjectName("okey")
+        self.cancel = QtWidgets.QPushButton(self.background)
+        self.cancel.setGeometry(QtCore.QRect(300, 420, 91, 31))
+        self.cancel.setObjectName("cancel")
 
+        self.retranslateUi(fizcreate)
+        QtCore.QMetaObject.connectSlotsByName(fizcreate)
+
+    def retranslateUi(self, fizcreate):
+        _translate = QtCore.QCoreApplication.translate
+        fizcreate.setWindowTitle(_translate("fizcreate", "Новый объект"))
+        self.fiolabel.setText(_translate("fizcreate", "ФИО:"))
+        self.passlabel.setText(_translate("fizcreate", "Паспортные данные:"))
+        self.adresslabel.setText(_translate("fizcreate", "Адрес:"))
+        self.numlabel.setText(_translate("fizcreate", "Контактный телефон:"))
+        self.iinlabel.setText(_translate("fizcreate", "ИИН:"))
+        self.nazavanie.setText(_translate("fizcreate", "Добавление Физического лица"))
+        self.okey.setText(_translate("fizcreate", "ОК"))
+        self.cancel.setText(_translate("fizcreate", "Отменить"))
 
 if __name__ == "__main__":
     import sys
