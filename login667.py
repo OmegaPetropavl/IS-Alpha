@@ -159,29 +159,12 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
+    
     def fizlitch_select(self):
-        try:
-            
-            db = mdb.connect('localhost', 'root', 'root', 'arenda')
-            mycursor = db.cursor()
-            
-            query = "SELECT * from login"
-            mycursor.execute(query)
-            result = mycursor.fetchone()
-
-            if result == None:
-                print("Неправильный логин или пароль!")
-                
-
-            else:
-                print(result)
-                
-        except mdb.Error as e:
-            error = QMessageBox()
-            error.setText('Подключение невозможно!')
-            error.exec_()
-
-
+        self.fizcreate_window = QtWidgets.QMainWindow()
+        self.fizcreate_ui = Ui_fizcreate()
+        self.fizcreate_ui.setupUi(self.fizcreate_window)
+        self.fizcreate_window.show()
 
 
     def retranslateUi(self, MainWindow):
@@ -209,8 +192,8 @@ class Ui_fizcreate(object):
         self.background.setGeometry(QtCore.QRect(-30, -10, 531, 601))
         self.background.setAutoFillBackground(False)
         self.background.setStyleSheet("#background {\n"
-"background-color: rgb(170, 170, 127)\n"
-"}")
+        "background-color: rgb(170, 170, 127)\n"
+        "}")
         self.background.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.background.setFrameShadow(QtWidgets.QFrame.Raised)
         self.background.setObjectName("background")
