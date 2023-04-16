@@ -2,7 +2,9 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QMessageBox
 from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QLineEdit, QPushButton, QVBoxLayout
 import MySQLdb as mdb
-import mysql.connector as mc
+from fizcreate import *
+from dogovor import *
+
 
 class LoginBeg(QWidget):
     def setupUi(self, MainWindow):
@@ -35,6 +37,7 @@ class LoginBeg(QWidget):
         self.lineEditPassword = QtWidgets.QLineEdit(self.widget)
         self.lineEditPassword.setGeometry(QtCore.QRect(130, 200, 113, 20))
         self.lineEditPassword.setObjectName("lineEditPassword")
+        self.lineEditPassword.setEchoMode(QLineEdit.Password)
         self.pushButton = QtWidgets.QPushButton(self.widget)
         self.pushButton.setGeometry(QtCore.QRect(150, 300, 71, 23))
         self.pushButton.setObjectName("pushButton")
@@ -81,7 +84,9 @@ class LoginBeg(QWidget):
 
             if result1 == None and result2 == None:
                 self.labelResult.setText("Неправильный логин или пароль!")
-                
+
+            # if result1:
+            #     Ui_MainWindow().action.setEnabled(False)   
 
             else:
                 self.labelResult.setText("Вход проведен успешно!")
@@ -94,7 +99,9 @@ class LoginBeg(QWidget):
             
 
 class Ui_MainWindow(object):
+    
     def __init__(self):
+        
         super().__init__()
         MainWindow.setObjectName("MainWindow")
         MainWindow.setFixedSize(700, 700)
@@ -125,9 +132,9 @@ class Ui_MainWindow(object):
         self.label.setOpenExternalLinks(False)
         self.action = QtWidgets.QAction(MainWindow)
         self.action.setObjectName("sozddogovor")
-        self.action.triggered.connect(self.fizlitch_select)
+        self.action.triggered.connect(self.dogovor_create)
         self.action_2 = QtWidgets.QAction(MainWindow)
-        self.action_2.setObjectName("redakdogovor")
+        self.action_2.setObjectName("pechatisohr")
         
         self.action_3 = QtWidgets.QAction(MainWindow)
         self.action_3.setObjectName("arendatory")
@@ -155,7 +162,7 @@ class Ui_MainWindow(object):
         self.menubar.addAction(self.menu_4.menuAction())
         
         self.menubar.addAction(self.menu_5.menuAction())
-
+        
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
@@ -166,7 +173,13 @@ class Ui_MainWindow(object):
         self.fizcreate_ui.setupUi(self.fizcreate_window)
         self.fizcreate_window.show()
 
+    def dogovor_create(self):
+        self.dogovorcreate_window = QtWidgets.QMainWindow()
+        self.dogovorcreate_ui = Ui_Dialog()
+        self.dogovorcreate_ui.setupUi(self.dogovorcreate_window)
+        self.dogovorcreate_window.show()
 
+        
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "АИС \"Аренда помещений\""))
@@ -181,81 +194,9 @@ class Ui_MainWindow(object):
         self.action_4.setText(_translate("MainWindow", "Объекты"))
         self.action_5.setText(_translate("MainWindow", "Договоры"))
         self.action_6.setText(_translate("MainWindow", "Сформировать отчет..."))
-        self.action_7.setText(_translate("MainWindow", "Сведения о разработчиках..."))
-        self.action_8.setText(_translate("MainWindow", "Редактировать договор..."))
+        self.action_7.setText(_translate("MainWindow", "Сведения о программе..."))
+        self.action_8.setText(_translate("MainWindow", "Печать договора"))
    
-class Ui_fizcreate(object):
-    def setupUi(self, fizcreate):
-        fizcreate.setObjectName("fizcreate")
-        fizcreate.resize(465, 493)
-        self.background = QtWidgets.QFrame(fizcreate)
-        self.background.setGeometry(QtCore.QRect(-30, -10, 531, 601))
-        self.background.setAutoFillBackground(False)
-        self.background.setStyleSheet("#background {\n"
-        "background-color: rgb(170, 170, 127)\n"
-        "}")
-        self.background.setFrameShape(QtWidgets.QFrame.StyledPanel)
-        self.background.setFrameShadow(QtWidgets.QFrame.Raised)
-        self.background.setObjectName("background")
-        self.fiolabel = QtWidgets.QLabel(self.background)
-        self.fiolabel.setGeometry(QtCore.QRect(120, 150, 61, 41))
-        self.fiolabel.setObjectName("fiolabel")
-        self.passlabel = QtWidgets.QLabel(self.background)
-        self.passlabel.setGeometry(QtCore.QRect(120, 190, 121, 41))
-        self.passlabel.setObjectName("passlabel")
-        self.adresslabel = QtWidgets.QLabel(self.background)
-        self.adresslabel.setGeometry(QtCore.QRect(120, 270, 141, 41))
-        self.adresslabel.setObjectName("adresslabel")
-        self.numlabel = QtWidgets.QLabel(self.background)
-        self.numlabel.setGeometry(QtCore.QRect(120, 310, 141, 41))
-        self.numlabel.setObjectName("numlabel")
-        self.fio = QtWidgets.QLineEdit(self.background)
-        self.fio.setGeometry(QtCore.QRect(260, 160, 161, 20))
-        self.fio.setObjectName("fio")
-        self.passport = QtWidgets.QLineEdit(self.background)
-        self.passport.setGeometry(QtCore.QRect(260, 200, 161, 20))
-        self.passport.setObjectName("passport")
-        self.adress = QtWidgets.QLineEdit(self.background)
-        self.adress.setGeometry(QtCore.QRect(260, 280, 161, 20))
-        self.adress.setText("")
-        self.adress.setObjectName("adress")
-        self.phone = QtWidgets.QLineEdit(self.background)
-        self.phone.setGeometry(QtCore.QRect(260, 320, 161, 20))
-        self.phone.setObjectName("phone")
-        self.iinlabel = QtWidgets.QLabel(self.background)
-        self.iinlabel.setGeometry(QtCore.QRect(120, 230, 61, 41))
-        self.iinlabel.setObjectName("iinlabel")
-        self.iin = QtWidgets.QLineEdit(self.background)
-        self.iin.setGeometry(QtCore.QRect(262, 240, 161, 20))
-        self.iin.setObjectName("iin")
-        self.nazavanie = QtWidgets.QLabel(self.background)
-        self.nazavanie.setGeometry(QtCore.QRect(70, 60, 411, 51))
-        font = QtGui.QFont()
-        font.setFamily("Times New Roman")
-        font.setPointSize(22)
-        self.nazavanie.setFont(font)
-        self.nazavanie.setObjectName("nazavanie")
-        self.okey = QtWidgets.QPushButton(self.background)
-        self.okey.setGeometry(QtCore.QRect(154, 420, 91, 31))
-        self.okey.setObjectName("okey")
-        self.cancel = QtWidgets.QPushButton(self.background)
-        self.cancel.setGeometry(QtCore.QRect(300, 420, 91, 31))
-        self.cancel.setObjectName("cancel")
-
-        self.retranslateUi(fizcreate)
-        QtCore.QMetaObject.connectSlotsByName(fizcreate)
-
-    def retranslateUi(self, fizcreate):
-        _translate = QtCore.QCoreApplication.translate
-        fizcreate.setWindowTitle(_translate("fizcreate", "Новый объект"))
-        self.fiolabel.setText(_translate("fizcreate", "ФИО:"))
-        self.passlabel.setText(_translate("fizcreate", "Паспортные данные:"))
-        self.adresslabel.setText(_translate("fizcreate", "Адрес:"))
-        self.numlabel.setText(_translate("fizcreate", "Контактный телефон:"))
-        self.iinlabel.setText(_translate("fizcreate", "ИИН:"))
-        self.nazavanie.setText(_translate("fizcreate", "Добавление Физического лица"))
-        self.okey.setText(_translate("fizcreate", "ОК"))
-        self.cancel.setText(_translate("fizcreate", "Отменить"))
 
 if __name__ == "__main__":
     import sys
