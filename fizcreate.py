@@ -9,12 +9,15 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-
+from PyQt5.QtGui import QIcon
+import images
 
 class Ui_fizcreate(object):
     def setupUi(self, fizcreate):
         fizcreate.setObjectName("fizcreate")
         fizcreate.resize(465, 493)
+        icon = QIcon((":/logocompany.png"))
+        fizcreate.setWindowIcon(icon)
         self.background = QtWidgets.QFrame(fizcreate)
         self.background.setGeometry(QtCore.QRect(-30, -10, 531, 601))
         self.background.setAutoFillBackground(False)
@@ -74,7 +77,7 @@ class Ui_fizcreate(object):
 
     def retranslateUi(self, fizcreate):
         _translate = QtCore.QCoreApplication.translate
-        fizcreate.setWindowTitle(_translate("fizcreate", "Новый объект"))
+        fizcreate.setWindowTitle(_translate("fizcreate", "Новое физ-лицо"))
         self.fiolabel.setText(_translate("fizcreate", "ФИО:"))
         self.passlabel.setText(_translate("fizcreate", "Паспортные данные:"))
         self.adresslabel.setText(_translate("fizcreate", "Адрес:"))

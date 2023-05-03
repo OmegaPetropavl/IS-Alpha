@@ -13,12 +13,16 @@ from PyQt5.QtWidgets import QMessageBox
 import MySQLdb as mdb
 from docx import Document
 from docx.shared import Inches
+from PyQt5.QtGui import QIcon
+import images
 
 
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName("Создание договора")
         Dialog.setFixedSize(640, 588)
+        icon = QIcon((":/logocompany.png"))
+        Dialog.setWindowIcon(icon)
         self.background = QtWidgets.QWidget(Dialog)
         self.background.setGeometry(QtCore.QRect(0, -10, 641, 601))
         self.background.setAutoFillBackground(False)
