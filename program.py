@@ -10,6 +10,8 @@ from objectspravochnik import *
 from arendatorspravochnik import *
 from userspravochnik import *
 from arendatorsstat import *
+from oplatasstat import *
+from objectsstat import *
 import images
 
 
@@ -165,8 +167,10 @@ class Ui_MainWindow(object):
         self.action_6.triggered.connect(self.openarendatorsstat)
         self.action_9 = QtWidgets.QAction(MainWindow)
         self.action_9.setObjectName("otchet2")
+        self.action_9.triggered.connect(self.openoplatasstat)
         self.action_10 = QtWidgets.QAction(MainWindow)
         self.action_10.setObjectName("otchet3")
+        self.action_10.triggered.connect(self.openobjectstat)
         self.action_7 = QtWidgets.QAction(MainWindow)
         self.action_7.setObjectName("developers")
         self.action_7.triggered.connect(self.viewdevelopers)
@@ -185,9 +189,7 @@ class Ui_MainWindow(object):
         self.menubar.addAction(self.menu_5.menuAction())
         self.statusbar = QtWidgets.QStatusBar(MainWindow) #Статусбар для определения пользователя
         MainWindow.setStatusBar(self.statusbar)
-        self.status_label = QtWidgets.QLabel()
-        self.statusbar.addWidget(self.status_label)
-        self.status_label.setText("Вы зашли как администратор")
+        
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
         
@@ -238,6 +240,20 @@ class Ui_MainWindow(object):
         self.arendatorsstat_ui.setupUi(self.arendatorsstat_window)
         self.arendatorsstat_window.show()
 
+    def openoplatasstat(self):
+        self.oplatasstat_window = QtWidgets.QMainWindow()
+        self.oplatasstat_ui = Ui_oplatastat()
+        self.oplatasstat_ui.setupUi(self.oplatasstat_window)
+        self.oplatasstat_window.show()
+
+    def openobjectstat(self):
+        self.objectstat_window = QtWidgets.QMainWindow()
+        self.objectstat_ui = Ui_objectsstat()
+        self.objectstat_ui.setupUi(self.objectstat_window)
+        self.objectstat_window.show()
+
+
+
 
     def viewdevelopers(self):
         error = QMessageBox()
@@ -262,9 +278,9 @@ class Ui_MainWindow(object):
         self.action_5.setText(_translate("MainWindow", "Договоры"))
         self.action_8.setText(_translate("MainWindow", "Пользователи"))
         self.action_6.setText(_translate("MainWindow", "Отчет об арендодателях"))
-        self.action_9.setText(_translate("MainWindow", "Сформировать отчет2"))
-        self.action_10.setText(_translate("MainWindow", "Сформировать отчет3"))
-        self.action_7.setText(_translate("MainWindow", "Сведения о программе..."))
+        self.action_9.setText(_translate("MainWindow", "Отчет об оплате"))
+        self.action_10.setText(_translate("MainWindow", "Отчет об помещениях"))
+        self.action_7.setText(_translate("MainWindow", "Сведения о разработчиках"))
         
    
 

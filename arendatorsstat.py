@@ -8,7 +8,7 @@ import images
 class Ui_arendatorsstat(object):
     def setupUi(self, arendatorsstat):
         arendatorsstat.setObjectName("arendatorsstat")
-        arendatorsstat.resize(901, 609)
+        arendatorsstat.setFixedSize(901, 609)
         icon = QIcon((":/logocompany.png"))
         arendatorsstat.setWindowIcon(icon)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
