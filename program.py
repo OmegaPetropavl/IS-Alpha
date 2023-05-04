@@ -7,6 +7,8 @@ from fizcreate import *
 from dogovor import *
 from dogovorspravochnik import *
 from objectspravochnik import *
+from arendatorspravochnik import *
+from userspravochnik import *
 import images
 
 
@@ -145,7 +147,8 @@ class Ui_MainWindow(object):
         self.action.triggered.connect(self.dogovor_create)  
         self.action_3 = QtWidgets.QAction(MainWindow)
         self.action_3.setObjectName("arendatory")
-        self.action_3.triggered.connect(self.fizlitch_select)
+        # self.action_3.triggered.connect(self.fizlitch_select)
+        self.action_3.triggered.connect(self.openarendatorbook)
         self.action_4 = QtWidgets.QAction(MainWindow)
         self.action_4.setObjectName("objecty")
         self.action_4.triggered.connect(self.openobjectbook)
@@ -154,6 +157,7 @@ class Ui_MainWindow(object):
         self.action_5.triggered.connect(self.opendogovorbook)
         self.action_8 = QtWidgets.QAction(MainWindow)
         self.action_8.setObjectName("users")
+        self.action_8.triggered.connect(self.openuserbook)
         self.action_6 = QtWidgets.QAction(MainWindow)
         self.action_6.setObjectName("otchet1")
         self.action_9 = QtWidgets.QAction(MainWindow)
@@ -208,6 +212,19 @@ class Ui_MainWindow(object):
         self.objectbook_ui = Ui_objects()
         self.objectbook_ui.setupUi(self.objectbook_window)
         self.objectbook_window.show()
+
+    def openarendatorbook(self):
+        self.arendatorbook_window = QtWidgets.QMainWindow()
+        self.arendatorbook_ui = Ui_arendators()
+        self.arendatorbook_ui.setupUi(self.arendatorbook_window)
+        self.arendatorbook_window.show()
+
+    def openuserbook(self):
+        self.userbook_window = QtWidgets.QMainWindow()
+        self.userbook_ui = Ui_users()
+        self.userbook_ui.setupUi(self.userbook_window)
+        self.userbook_window.show()
+
 
     def viewdevelopers(self):
         error = QMessageBox()
