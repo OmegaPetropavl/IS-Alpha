@@ -9,6 +9,7 @@ from dogovorspravochnik import *
 from objectspravochnik import *
 from arendatorspravochnik import *
 from userspravochnik import *
+from arendatorsstat import *
 import images
 
 
@@ -16,7 +17,7 @@ import images
 class LoginBeg(QWidget):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(359, 373)
+        MainWindow.setFixedSize(359, 373)
         icon = QIcon((":/logocompany.png"))
         MainWindow.setWindowIcon(icon)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
@@ -90,18 +91,19 @@ class LoginBeg(QWidget):
             query2 = "SELECT Login,Password, Post from login where Login like '" +login + "'AND Password LIKE '" + password + "'AND Post like 'Администратор'"
             mycursor1.execute(query1)
             mycursor2.execute(query2)
+            global result1
             result1 = mycursor1.fetchone()
             result2 = mycursor2.fetchone()
 
             if result1 == None and result2 == None:
                 self.labelResult.setText("Неправильный логин или пароль!")
 
-            if result1:
-                Ui_MainWindow().action_8.setEnabled(False)   
+              
 
             else:
                 self.labelResult.setText("Вход проведен успешно!")
                 self.main_menu = Ui_MainWindow()
+                self.main_menu.updateUserAction()
                 
         except mdb.Error as e:
             error = QMessageBox()
@@ -160,6 +162,7 @@ class Ui_MainWindow(object):
         self.action_8.triggered.connect(self.openuserbook)
         self.action_6 = QtWidgets.QAction(MainWindow)
         self.action_6.setObjectName("otchet1")
+        self.action_6.triggered.connect(self.openarendatorsstat)
         self.action_9 = QtWidgets.QAction(MainWindow)
         self.action_9.setObjectName("otchet2")
         self.action_10 = QtWidgets.QAction(MainWindow)
@@ -187,7 +190,11 @@ class Ui_MainWindow(object):
         self.status_label.setText("Вы зашли как администратор")
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
+        
 
+    def updateUserAction(self):
+        if result1 is not None:
+            self.action_8.setEnabled(False)
     
     def fizlitch_select(self):
         self.fizcreate_window = QtWidgets.QMainWindow()
@@ -225,6 +232,12 @@ class Ui_MainWindow(object):
         self.userbook_ui.setupUi(self.userbook_window)
         self.userbook_window.show()
 
+    def openarendatorsstat(self):
+        self.arendatorsstat_window = QtWidgets.QMainWindow()
+        self.arendatorsstat_ui = Ui_arendatorsstat()
+        self.arendatorsstat_ui.setupUi(self.arendatorsstat_window)
+        self.arendatorsstat_window.show()
+
 
     def viewdevelopers(self):
         error = QMessageBox()
@@ -238,7 +251,7 @@ class Ui_MainWindow(object):
         
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "ИС учета аренды нежилых помещений\"Альфа\""))
+        MainWindow.setWindowTitle(_translate("MainWindow", "ИС учета аренды нежилых помещений \"Альфа\""))
         self.menu_2.setTitle(_translate("MainWindow", "Файл"))
         self.menu_3.setTitle(_translate("MainWindow", "Справочники"))
         self.menu_4.setTitle(_translate("MainWindow", "Отчеты"))
@@ -248,7 +261,7 @@ class Ui_MainWindow(object):
         self.action_4.setText(_translate("MainWindow", "Объекты"))
         self.action_5.setText(_translate("MainWindow", "Договоры"))
         self.action_8.setText(_translate("MainWindow", "Пользователи"))
-        self.action_6.setText(_translate("MainWindow", "Сформировать отчет1"))
+        self.action_6.setText(_translate("MainWindow", "Отчет об арендодателях"))
         self.action_9.setText(_translate("MainWindow", "Сформировать отчет2"))
         self.action_10.setText(_translate("MainWindow", "Сформировать отчет3"))
         self.action_7.setText(_translate("MainWindow", "Сведения о программе..."))
