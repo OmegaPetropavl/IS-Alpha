@@ -277,7 +277,7 @@ class Ui_MainWindow(object):
         self.action_4.setText(_translate("MainWindow", "Объекты"))
         self.action_5.setText(_translate("MainWindow", "Договоры"))
         self.action_8.setText(_translate("MainWindow", "Пользователи"))
-        self.action_6.setText(_translate("MainWindow", "Отчет об арендодателях"))
+        self.action_6.setText(_translate("MainWindow", "Отчет об арендаторах"))
         self.action_9.setText(_translate("MainWindow", "Отчет об оплате"))
         self.action_10.setText(_translate("MainWindow", "Отчет об помещениях"))
         self.action_7.setText(_translate("MainWindow", "Сведения о разработчиках"))
